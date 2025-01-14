@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Insert criteria data -->
+    <changeSet id="FLTR-1-insert-filter-data" author="mario" context="development">
+        <insert tableName="filter">
+            <column name="name" value="Full filter"/>
+        </insert>
+        <insert tableName="filter">
+            <column name="name" value="Two criteria filter"/>
+        </insert>
+        <insert tableName="filter">
+            <column name="name" value="One criteria filter"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert criteria data -->
+    <changeSet id="FLTR-1-insert-criteria-data" author="mario" context="development">
+        <!-- Full filter criteria -->
+        <insert tableName="criteria">
+            <column name="filter_id" valueComputed="(SELECT id FROM filter WHERE name='Full filter')"/>
+            <column name="criterion" value="AMOUNT"/>
+            <column name="comparator" value="MORE"/>
+            <column name="condition" value="4"/>
+        </insert>
+        <insert tableName="criteria">
+            <column name="filter_id" valueComputed="(SELECT id FROM filter WHERE name='Full filter')"/>
+            <column name="criterion" value="TITLE"/>
+            <column name="comparator" value="STARTS"/>
+            <column name="condition" value="Meow"/>
+        </insert>
+        <insert tableName="criteria">
+            <column name="filter_id" valueComputed="(SELECT id FROM filter WHERE name='Full filter')"/>
+            <column name="criterion" value="DATE"/>
+            <column name="comparator" value="FROM"/>
+            <column name="condition" value="2021-10-25"/>
+        </insert>
+        <!-- Two criteria filter criteria -->
+        <insert tableName="criteria">
+            <column name="filter_id" valueComputed="(SELECT id FROM filter WHERE name='Two criteria filter')"/>
+            <column name="criterion" value="DATE"/>
+            <column name="comparator" value="EQUALS"/>
+            <column name="condition" value="2022-05-15"/>
+        </insert>
+        <insert tableName="criteria">
+            <column name="filter_id" valueComputed="(SELECT id FROM filter WHERE name='Two criteria filter')"/>
+            <column name="criterion" value="TITLE"/>
+            <column name="comparator" value="CONTAINS"/>
+            <column name="condition" value="something"/>
+        </insert>
+        <!-- One criteria filter criteria -->
+        <insert tableName="criteria">
+            <column name="filter_id" valueComputed="(SELECT id FROM filter WHERE name='One criteria filter')"/>
+            <column name="criterion" value="AMOUNT"/>
+            <column name="comparator" value="LESS"/>
+            <column name="condition" value="4"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

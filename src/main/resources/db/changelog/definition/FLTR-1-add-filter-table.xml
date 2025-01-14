@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Create filter table -->
+    <changeSet id="FLTR-1-add-filter-table" author="mario" context="development">
+        <createTable tableName="filter">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create filter_criteria table -->
+    <changeSet id="FLTR-1-add-criteria-table" author="mario" context="development">
+        <createTable tableName="criteria">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="filter_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_criteria_filter" references="filter(id)"/>
+            </column>
+            <column name="criterion" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comparator" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="condition" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

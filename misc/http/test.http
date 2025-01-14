@@ -1,0 +1,24 @@
+### Get all filters
+GET {{url}}/filters
+Accept: application/json
+
+### Create new filter
+POST {{url}}/filter
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : "Test filter",
+  "criteria" : [
+    {
+      "criteria" : "AMOUNT",
+      "comparator" : "LESS",
+      "condition" : "5"
+    },
+    {
+      "criteria" : "DATE",
+      "comparator" : "UNTIL",
+      "condition" : "2024-01-01"
+    }
+  ]
+}
