@@ -4,8 +4,8 @@ Filters Application
 
 # Run
 1. In docker/db directory run `docker-compose up -d`
-2. (TODO: make automatic) Run SQL-s in init-scripts
-3. Run application
+2. Run SQL-s in docker/db/init-scripts (TODO: fix to make automatic)
+3. Run application: `./gradlew bootRun`
 
 # To Do
 1. Add logging config
